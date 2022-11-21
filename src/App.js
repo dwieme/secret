@@ -11,6 +11,7 @@ function App() {
   const [alertText, setAlertText] = useState("");
   const [alertVariant, setAlertVariant] = useState("info");
   const [displayPlaylist, setDisplayPlaylist] = useState(false);
+  const [displayHints, setDisplayHints] = useState(false);
   const handlePasswordChange = useCallback((e) => {
     setPassword(e.target.value);
   }, []);
@@ -28,12 +29,16 @@ function App() {
       switch (normalizedPassword) {
         case "iloveyou":
           setAlertVariant("warning");
-          setAlertText("Not quite! The crossword solution is only a hint.");
+          setAlertText(
+            "Not quite! The crossword solution is only a hint. But here's some more hints if you need them..."
+          );
+          setDisplayHints(true);
           break;
         case "indigollamayamaha":
           setAlertVariant("success");
           setAlertText("You did it! Press play.");
           setDisplayPlaylist(true);
+          setDisplayHints(false);
           break;
         default:
           break;
@@ -58,14 +63,19 @@ function App() {
         </a>{" "}
         for your first hint.
       </p>
-      <details className="mb-3">
-        <summary>2nd Hint</summary>
-        <p>You made me a keychain with this on it.</p>
-      </details>
-      <details className="mb-3">
-        <summary>3rd Hint</summary>
-        <p>It's the name of our WiFi.</p>
-      </details>
+      {alertText && <Alert variant={alertVariant}>{alertText}</Alert>}
+      {displayHints && (
+        <div>
+          <details className="mb-3">
+            <summary>2nd Hint</summary>
+            <p>You made me a keychain with this on it.</p>
+          </details>
+          <details className="mb-3">
+            <summary>3rd Hint</summary>
+            <p>It's the name of our WiFi.</p>
+          </details>
+        </div>
+      )}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="password">
           <Form.Label>Password</Form.Label>
@@ -80,7 +90,6 @@ function App() {
           Submit
         </Button>
       </Form>
-      {alertText && <Alert variant={alertVariant}>{alertText}</Alert>}
       {displayPlaylist && (
         <iframe
           title="spotify"
