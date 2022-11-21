@@ -11,7 +11,7 @@ function App() {
   const [alertText, setAlertText] = useState("");
   const [alertVariant, setAlertVariant] = useState("info");
   const [displayPlaylist, setDisplayPlaylist] = useState(false);
-  const [displayHints, setDisplayHints] = useState(false);
+  // const [displayHints, setDisplayHints] = useState(false);
   const handlePasswordChange = useCallback((e) => {
     setPassword(e.target.value);
   }, []);
@@ -27,18 +27,16 @@ function App() {
         .replaceAll(/\s/g, "");
 
       switch (normalizedPassword) {
-        case "iloveyou":
-          setAlertVariant("warning");
-          setAlertText(
-            "Not quite! The crossword solution is only a hint. But here's some more hints if you need them..."
-          );
-          setDisplayHints(true);
-          break;
         case "indigollamayamaha":
+          setAlertVariant("warning");
+          setAlertText("Not quite! The crossword solution is only a hint.");
+          // setDisplayHints(true);
+          break;
+        case "iloveyou":
           setAlertVariant("success");
           setAlertText("You did it! Press play.");
           setDisplayPlaylist(true);
-          setDisplayHints(false);
+          // setDisplayHints(false);
           break;
         default:
           setAlertText("");
@@ -62,10 +60,10 @@ function App() {
         >
           crossword
         </a>{" "}
-        for your first hint.
+        for your clue.
       </p>
       {alertText && <Alert variant={alertVariant}>{alertText}</Alert>}
-      {displayHints && (
+      {/* {displayHints && (
         <div>
           <details className="mb-3">
             <summary>2nd Hint</summary>
@@ -76,7 +74,7 @@ function App() {
             <p>It's the name of our WiFi.</p>
           </details>
         </div>
-      )}
+      )} */}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="password">
           <Form.Label>Password</Form.Label>
