@@ -32,7 +32,7 @@ function App() {
           break;
         case "indigollamayamaha":
           setAlertVariant("success");
-          setAlertText("You did it! Press play...");
+          setAlertText("You did it! Press play.");
           setDisplayPlaylist(true);
           break;
         default:
@@ -46,8 +46,18 @@ function App() {
 
   return (
     <Container>
-      <h1 className="pt-3">Enter the password for your surprise!</h1>
-      <p>Solve the crossword for your first hint.</p>
+      <h1 className="pt-3">Enter the password to unlock your surprise!</h1>
+      <p>
+        Solve the{" "}
+        <a
+          href="https://puzzel.org/en/crossword/play?p=-NHM8hmDlHBrNOfm7yGk"
+          target="_blank"
+          rel="noreferrer"
+        >
+          crossword
+        </a>{" "}
+        for your first hint.
+      </p>
       <details className="mb-3">
         <summary>2nd Hint</summary>
         <p>You made me a keychain with this on it.</p>
