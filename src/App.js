@@ -41,6 +41,7 @@ function App() {
           setDisplayHints(false);
           break;
         default:
+          setAlertText("");
           break;
       }
 
