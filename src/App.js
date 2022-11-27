@@ -34,7 +34,7 @@ function App() {
           break;
         case "iloveyou":
           setAlertVariant("success");
-          setAlertText("You did it! Press play.");
+          setAlertText("You did it! Open Spotify and press play!");
           setDisplayPlaylist(true);
           // setDisplayHints(false);
           break;
@@ -75,32 +75,30 @@ function App() {
           </details>
         </div>
       )} */}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter password"
-            onChange={handlePasswordChange}
-            value={password}
-          />
-        </Form.Group>
-        <Button className="mb-3" variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+      {!displayPlaylist && (
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter password"
+              onChange={handlePasswordChange}
+              value={password}
+            />
+          </Form.Group>
+          <Button className="mb-3" variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      )}
       {displayPlaylist && (
-        <iframe
-          title="spotify"
-          style={{ borderRadius: "12px" }}
-          src="https://open.spotify.com/embed/playlist/5x0FQURm7BNvnmqWVcPDOC?utm_source=generator&theme=0"
-          width="100%"
-          height="380"
-          frameBorder="0"
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        ></iframe>
+        <a
+          href="https://open.spotify.com/playlist/5x0FQURm7BNvnmqWVcPDOC"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open Spotify
+        </a>
       )}
     </Container>
   );
