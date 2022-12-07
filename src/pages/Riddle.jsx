@@ -1,3 +1,4 @@
+import "./Riddle.css";
 import { Link } from "react-router-dom";
 
 function Riddle() {
